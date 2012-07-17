@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>tableHelp - Basic</title> 
+		<!-- JQuery from CDN -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<!-- JQuery fall back -->
+		<script>window.jQuery || document.write('<script src="scripts/jquery-1.7.2.min.js"><\/script>')</script>
+		 
+		<script src="scripts/jquery.tableHelp.js" type="text/javascript" charset="utf-8"></script> 
+		
+		<!--local style -->
+		<style type="text/css"> 
+			body{ margin: 10px auto; }
+			.container{ padding: 20px; }
+			fieldset{  }
+			ul{ padding:0; float:left; }
+			li{   height: 25px; margin: 0; padding: 0; list-style: none; }
+				li input[type=checkbox]{ width:35px; }
+				li label{ display: inline-block; width: 150px; }
+				li input[type=text]  { width: 50px; }
+			pre { padding: 2px;	} 
+		</style>
+	</head>
+<body>
+	<div class="container">
+		<table>
+			<tr><td colspan="2"><h3>Basic Table with tableHelp plugin</h3></td></tr>
+		    <tr><td>
+				<table id="table1" border="1" cellpadding="1">
+					<thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr></thead>
+					<tbody>
+						<tr><td>10</td><td>21.0</td><td>32</td><td>43</td><td>54</td></tr>
+						<tr><td>20</td><td>31.1</td><td>42</td><td>53</td><td>14</td></tr>
+						<tr><td>30</td><td>41.2</td><td>52</td><td>13</td><td>24</td></tr>
+						<tr><td>40</td><td>51.3</td><td>12</td><td>23</td><td>34</td></tr>
+						<tr><td>50</td><td>11.4</td><td>22</td><td>33</td><td></td></tr>
+					</tbody>
+					<tfoot><tr><th>Q</th><th>W</th><th>E</th><th>R</th><th>T</th></tr></tfoot>
+				</table>
+			</td><td>
+			<pre>
+USAGE:-
+$(function(){
+  $('#table1')
+    .tableHelp({
+      countRow:'#',
+      altRow:'#dedede', 
+      sumColumn:[4, 5]
+  }) 
+}); 	
+			</pre>
+			</td></tr>
+			<tr><td colspan="2">
+			
+			<fieldset> 
+				<legend>Options</legend>
+			<span>Note: These options are for demonstration only.
+			The Usage above is sufficient to utilize tableHelp</span>
+				<ul>
+					<li>
+						<input type="checkbox" id="chk1" checked="checked" />
+						<label>Count Row</label>
+						<input type="text" id="countRowCaption" value="#" />
+					</li>
+					<li>
+						<input type="checkbox" id="chk2" checked="checked" />
+						<label>Alternate Row Color</label>
+						<input type="text" id="altColor" value="#dedede" />
+					</li>
+					<li> 
+						<input type="checkbox" id="chk3" checked="checked" />
+						<label>Sum Colums</label>
+						<input type="text" id="sumColumn" value="4,5" />
+					</li>
+				</ul> 
+			</fieldset>
+			</td></tr> 
+		</table>   
+		<script type="text/javascript" charset="utf-8">
+			//<![CDATA[
+			//You do not need these calls. This is just to demonstrate this tableHelper
+			//plugin can be called directly.
+			///AltRow color
+			$('#chk2').click( function() {
+				$('#table1').tableHelp(
+					'SetAltRow', 
+					$(this).is(':checked') ? $('#altColor').val() : '' 
+				);
+			});
+			///CountRow
+			$('#chk1').click(function() {
+				$('#table1').tableHelp(
+					'CountRow', 
+					$(this).is(':checked') ? $('#countRowCaption').val() : '' 
+				); 			
+			}); 
+			///Sum Column
+			$('#chk3').click(function() {
+				if ($(this).is(':checked')) {
+					var cols = $('#sumColumn').val();
+					
+					//Grep only numbers
+					cols =  $.grep(cols, isNaN, true)
+					
+					//Subtract array by 1 if countRow is checked
+					//because there is no checking on this in the SumColumn function
+					//This is for demonstration only.
+					cols = $.map(cols, function(n) {
+							return $('#chk1').is(':checked') ? n : --n;
+						}); 
+						
+					//Direct call
+					$('#table1').tableHelp('SumColumn', [cols]);  				
+				} else {
+					//disable sum
+					$('#table1').tableHelp('SumColumn', []);  				
+				}
+
+			});
+
+			//]]>
+		</script>
+	</div>
+		
+	<script type="text/javascript" charset="utf-8">
+		/*This is what you need to utilize tableHelp plugin.
+			Options are:-
+			- altRow: '<color of the row in English or #hexcode>'; empty ('') means disable
+			- countRow: '<column caption>'; empty ('') means disable
+			- sumColumn: [<comma saperate column>]
+			- showClipboard: true/false
+		*/
+		$(function(){ 
+			$('#table1') 
+				.tableHelp({
+					altRow:'#dedede', 
+					countRow:'#',
+					sumColumn:[4,5],
+					showClipboard: false
+				}) 
+		});
+		
+	</script>
+</body>
+</html>
