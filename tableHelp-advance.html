@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	<link href="css/theme-ui/jquery.ui.all.css" rel="stylesheet" type="text/css" />	
+	<link href="css/dps-datatable.css" rel="stylesheet" type="text/css" />
+	
+	<script src="scripts/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>		
+	<script src="scripts/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>		
+	<script src="scripts/jquery.tableHelp.js" type="text/javascript" charset="utf-8"></script>
+	<script src="scripts/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>
+ 
+</head>
+<body>
+	<div id="container" style="margin-bottom: 10px;">
+		<h3>Advance configuration for tableHelp</h3>
+		<table id="table2">
+			<thead><tr><td>Table</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td></tr></thead>
+			<tbody>
+			<tr><td>First</td><td>10</td><td>21.0</td><td>32</td><td>43</td><td>54</td></tr>
+			<tr><td>Second</td><td>20</td><td>31.1</td><td>42</td><td>53</td><td>14</td></tr>
+			<tr><td>Third</td><td>30</td><td>41.2</td><td>52</td><td>13</td><td>24</td></tr>
+			<tr><td>Forth</td><td>40</td><td>51.3</td><td>12</td><td>23</td><td>34</td></tr>
+			<tr><td>Fifth</td><td>50</td><td>11.4</td><td>22</td><td>33</td><td></td></tr>
+			<tr><td>6</td><td>60</td><td>11.1</td><td>32</td><td>63</td><td>44</td></tr>
+			<tr><td>7</td><td>70</td><td>11.2</td><td>62</td><td>73</td><td>64</td></tr>
+			<tr><td>8</td><td>80</td><td>11.3</td><td>72</td><td>83</td><td>74</td></tr>
+			<tr><td>9</td><td>90</td><td>11.5</td><td>82</td><td>93</td><td>84</td></tr>
+			<tr><td>10</td><td>1</td><td>11.6</td><td>92</td><td>103</td><td>94</td></tr>
+			<tr><td>11</td><td>2</td><td>11.7</td><td>102</td><td>203</td><td>104</td></tr>
+			<tr><td>12</td><td>3</td><td>11.8</td><td>112</td><td>303</td><td>114</td></tr>
+			<tr><td>13</td><td>4</td><td>11.9</td><td>122</td><td>403</td><td>124</td></tr>
+			<tr><td>14</td><td>5</td><td>11.0</td><td>132</td><td>503</td><td>134</td></tr>
+			<tr><td>15</td><td>6</td><td>21.1</td><td>142</td><td>603</td><td>144</td></tr>
+			<tr><td>16</td><td>7</td><td>21.2</td><td>152</td><td>703</td><td>154</td></tr>
+			<tr><td>17</td><td>8</td><td>21.3</td><td>162</td><td>803</td><td>164</td></tr>
+			<tr><td>18</td><td>9</td><td>21.4</td><td>172</td><td>903</td><td>174</td></tr>
+			<tr><td>19</td><td>10</td><td>21.5</td><td>201</td><td>913</td><td>184</td></tr>
+			<tr><td>20</td><td>11</td><td>21.6</td><td>202</td><td>914</td><td>194</td></tr>
+			<tr><td>21</td><td>12</td><td>21.7</td><td>203</td><td>915</td><td>204</td></tr>
+			<tr><td>22</td><td>13</td><td>21.8</td><td>204</td><td>916</td><td>214</td></tr>
+			<tr><td>23</td><td>14</td><td>21.9</td><td>205</td><td>917</td><td>224</td></tr>
+			<tr><td>24</td><td>15</td><td>31.1</td><td>206</td><td>918</td><td>234</td></tr>
+			<tr><td>25</td><td>16</td><td>31.2</td><td>207</td><td>919</td><td>244</td></tr>
+			<tr><td>26</td><td>17</td><td>31.3</td><td>208</td><td>923</td><td>254</td></tr>
+			<tr><td>27</td><td>18</td><td>31.4</td><td>209</td><td>933</td><td>264</td></tr>
+			<tr><td>28</td><td>19</td><td>31.5</td><td>210</td><td>943</td><td>274</td></tr>
+			<tr><td>29</td><td>20</td><td>31.6</td><td>220</td><td>915</td><td>284</td></tr>
+			<tr><td>30</td><td>21</td><td>31.7</td><td>221</td><td>916</td><td>294</td></tr>
+			</tbody> 
+		</table> 	 		
+	</div>	 
+	<script type="text/javascript" charset="utf-8">
+		$(function(){  
+		 	$("#table2") 
+				.dataTable({
+					"bJQueryUI": true,
+					"bStateSave": true, 
+					"aLengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]]
+				}) 
+				.tableHelp({
+					countRow: '#.', 
+					showClipboard: true,
+					sumColumn: [4,5,6] 
+				})
+		});
+ 
+	</script>
+</body>
+</html>

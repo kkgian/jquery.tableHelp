@@ -1,41 +1,39 @@
-jquery.tableHelp
-================
-
-Html table helper with jquery
-
-Author: KK Gian
-Project: jquery plugin.
-file: jquery.tableHelp.js
-Date: July 2012
-Version: 1.0.0.0
-Description: Chainable HTML <table> helper, refer to default options. 
-	If chaining plugins, this plugin has to be first.
+#jquery.tableHelp
+####July 2012
+####Version: 0.1.0.0
+####File: jquery.tableHelp.js
+####Description: 
+	- jQuery plugin for Html table help.
 		e.g: 
 		$("#myTable") 
 			.tableHelp()
+			//Optional chaning to other plugin
 			.dataTable({
 				"bJQueryUI": true, etc...
 			})
 
-Options available: 
-	- altRow		: show alternate column; need .altRow class in CSS decalration
-	- countRow		: Insert a new column in the <table> with row counting
-	- sumColumn []	: pass in column array to get the total (for number).
-						eg. {sumColumn: [4,5]} will sum up column 4 and 5 in additional row at last
-	- showClipboard	: show addition row <tfoot>. Refer requirement bellow.
+####Options: 
+	- altRow 		: [<color code(default: #f8f8f8>]	- show alternate column; 
+	- countRow		: [<title(default: #)>]				- Insert a new column in the <table> with row counting
+	- sumColumn		: [<column arry(default: none)>]		- pass in column array to get the total (for number).
+		eg. {sumColumn: [4,5]} will sum up column 4 and 5, in additional new row inserted at <tfoot>, (first row if exist).
+	- showClipboard	: show addition row <tfoot>, last row if exists. Refer requirement bellow.
 	- filterColumn	: (under construction, meant to show/hide specified column(s))
 
-Usage:
+####Usage:
 	 $("#myTable").tableHelp();							- using the default option.
 	 $("#myTable").tableHelp( {'<option>':<value>} );	- overwrite default option.
-eg.: $("#myTable").tableHelp( {'countRow':false} );		- switch off row counting.
+	 
+	 eg.: $("#myTable").tableHelp( {'countRow':false} );		- switch off row counting.
 
-Requirement:
+####Requirement:
 	If you want copy-to-clipboard tools, get it from https://github.com/jonrohan/ZeroClipboard.
 	What we need is only 2 files:-
-	ZeroClipboard.swf and ZeroClipboard.js ver.1.0.7. (don't forget to setMoviePate)
-		Note: using ZeroClipboard10.swf will not clip \t 
 
-Credits:-
+- ZeroClipboard.swf - Note: using ZeroClipboard10.swf will not clip \t 
+- ZeroClipboard.js ver.1.0.7. (don't forget to setMoviePate)
+	
+####Author: KK Gian
+####Credits:-
 - https://github.com/jonrohan/ZeroClipboard
 - http://jqueryboilerplate.com/ 
