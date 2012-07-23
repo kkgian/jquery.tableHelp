@@ -36,4 +36,4 @@
 ####Author: KK Gian
 ####Credits:-
 - https://github.com/jonrohan/ZeroClipboard
-- http://jqueryboilerplate.com/ 
+- https://github.com/zenorocha/jquery-boilerplate/
