@@ -3,7 +3,7 @@
  *  Project: jquery plugin.
  *	file: jquery.tableHelp.js
  *	Date: July 2012
- *	Version: 1.0.0.0
+ *	Version: 1.0.0.1
  *  Description: Chainable HTML <table> helper, refer to default options. 
  *		If chaining plugins, this plugin has to be first.
  *			e.g: 
@@ -88,7 +88,7 @@
 		init:  function () {
 			// Place initialization logic here
 			// You already have access to the DOM element and the options via the instance, 
-			// e.g., this.element and this.options 
+			// e.g., this.element and this.options  
 			
 			if (this.options.altRow != '') { this.SetAltRow(this.options.altRow) } 
 			
@@ -101,16 +101,25 @@
 			//if (this.options.filterColumn.length > 0) { this.AddHelpTool('columnFilter') }
 			
 		}, 
+		Redraw: function() { 
+			//Recount rows
+			 this.CountRow(this.options.countRow)
+			 
+			//Recalculate columns
+			this.SumColumn(this.options.sumColumn);
+		},
 		SetAltRow: function(color) {   
 			this.element.find('tbody tr:odd').css('background', color);
 		},	 
 		CountRow: function(Caption){
-			var id = this.element.attr('id')
-			if (!Caption) {  
+			var id = this.element.attr('id') 
+			if (!Caption) {   
 				//this is to provide 'direct' call to remove count
 				this.element.find('[class^="cR"]').remove();
 				return false;
-			}
+			} 
+			////Reset by deleting if any exists
+			this.element.find('[class^="cR"]').remove();
 			////<thead> 
 			this.element.find('thead tr').find('th:first').before('<th class="cRthth'+id+'">'+Caption+'</th>'); 
 			this.element.find('thead tr').find('td:first').before('<td class="cRthtd'+id+'">'+Caption+'</td>');
