@@ -12,8 +12,8 @@
 		
 		<!--local style -->
 		<style type="text/css"> 
-			body{ margin: 10px auto; }
-			.container{ padding: 20px; }
+			body{ margin: 5px auto; }
+			.container{ padding: 0 10px; }
 			fieldset{  }
 			ul{ padding:0; float:left; }
 			li{   height: 25px; margin: 0; padding: 0; list-style: none; }
@@ -24,9 +24,12 @@
 		</style>
 	</head>
 <body>
-	<div class="container">
-		<table>
-			<tr><td colspan="2"><h3>Basic Table with tableHelp plugin</h3></td></tr>
+	<div class="container">  
+	<h3>Basic Table with tableHelp plugin</h3>
+	<div>
+	<p>For advance setting, please refer to <a href="tableHelp-advance.html">Advance Example</a></p>
+	</div>
+		<table> 
 		    <tr><td>
 				<table id="table1" border="1" cellpadding="1">
 					<thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr></thead>
@@ -56,8 +59,7 @@ $(function(){
 			
 			<fieldset> 
 				<legend>Options</legend>
-			<span>Note: These options are for demonstration only.
-			The Usage above is sufficient to utilize tableHelp</span>
+				<p>Note: These options are for demonstration only. The Usage above is sufficient to utilize tableHelp</p>
 				<ul>
 					<li>
 						<input type="checkbox" id="chk1" checked="checked" />
@@ -77,7 +79,14 @@ $(function(){
 				</ul> 
 			</fieldset>
 			</td></tr> 
-		</table>   
+		</table> 
+		<p>
+		<ul>
+			<li>Additional:</li>
+			<li><a id="btnDeleteLastRow" href="#">Delete last row example</a></li>
+		</ul>
+		</p>
+	
 		<script type="text/javascript" charset="utf-8">
 			//<![CDATA[
 			//You do not need these calls. This is just to demonstrate this tableHelper
@@ -116,12 +125,11 @@ $(function(){
 				} else {
 					//disable sum
 					$('#table1').tableHelp('SumColumn', []);  				
-				}
-
-			});
-
+				} 
+			}); 
 			//]]>
 		</script>
+		
 	</div>
 		
 	<script type="text/javascript" charset="utf-8">
@@ -137,11 +145,19 @@ $(function(){
 				.tableHelp({
 					altRow:'#dedede', 
 					countRow:'#',
-					sumColumn:[4,5],
+					sumColumn:[2,4,5],
 					showClipboard: false
 				}) 
 		});
 		
+	</script>
+	<script type="text/javascript" charset="utf-8"> 
+		$('#btnDeleteLastRow').click(function() { 
+			var t = $('#table1');
+			$('tbody tr:last-child', t).remove();
+			//Just call Redraw to recalculate columns.
+			t.tableHelp('Redraw');
+		});
 	</script>
 </body>
 </html>

@@ -2,19 +2,43 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title></title>
-	<link href="css/theme-ui/jquery.ui.all.css" rel="stylesheet" type="text/css" />	
-	<link href="css/dps-datatable.css" rel="stylesheet" type="text/css" />
-	
-	<script src="scripts/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>		
-	<script src="scripts/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>		
-	<script src="scripts/jquery.tableHelp.js" type="text/javascript" charset="utf-8"></script>
-	<script src="scripts/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>
- 
+		<title>Advanced sample for tableHelp</title>
+		<link href="css/theme-ui/jquery.ui.all.css" rel="stylesheet" type="text/css" />	
+		<link href="css/dps-datatable.css" rel="stylesheet" type="text/css" />
+		<!-- JQuery from CDN -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<!-- JQuery fall back -->
+		<script>window.jQuery || document.write('<script src="scripts/jquery-1.7.2.min.js"><\/script>')</script>
+		 
+		<script src="scripts/jquery.tableHelp.js" type="text/javascript" charset="utf-8"></script> 	 	
+		<script src="scripts/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>		
+		 
+		<script src="scripts/jquery.tableHelp.js" type="text/javascript" charset="utf-8"></script>
+		<script src="scripts/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>
+ 		<!--local style -->
+		<style type="text/css"> 
+			body{ margin: 5px; }
+			.container{ padding: 0 10px; }
+			.dataTables_wrapper{ width: 50%}
+			.dataTable{ width: 100%;}
+			fieldset{  }
+			ul{ padding:0; float:left; }
+			li{   height: 25px; margin: 0; padding: 0; list-style: none; }
+				li input[type=checkbox]{ width:35px; }
+				li label{ display: inline-block; width: 150px; }
+				li input[type=text]  { width: 50px; }
+			pre { padding: 2px;	} 
+		</style>
 </head>
 <body>
-	<div id="container" style="margin-bottom: 10px;">
+	<div id="container">
 		<h3>Advance configuration for tableHelp</h3>
+		<div><p>For basic setting, please refer to <a href="tableHelp-basic.html">Simple Example</a></p>
+		<p>Note: For chaining plugin(s), tableHelp need to call "Redraw" function implicitly. In this example,
+		we add listener to fnDrawCallback of dataTable plugin. </p>
+		<p>It is reconmended to put tableHelp at the last chain so that it does not affect any rendering.</p>
+		</div>
+		<div style="width: 1000px;">
 		<table id="table2">
 			<thead><tr><td>Table</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td></tr></thead>
 			<tbody>
@@ -49,21 +73,35 @@
 			<tr><td>29</td><td>20</td><td>31.6</td><td>220</td><td>915</td><td>284</td></tr>
 			<tr><td>30</td><td>21</td><td>31.7</td><td>221</td><td>916</td><td>294</td></tr>
 			</tbody> 
-		</table> 	 		
+		</table> 	  
+	</div>	
+	<div>
+		<ul>
+			<li>Additional:</li>
+			<li><a id="btnDeleteLastRow" href="#">Delete last row example</a></li>
+		</ul>	
+	</div>
 	</div>	 
+	<script type="text/javascript" charset="utf-8"> 
+		$('#btnDeleteLastRow').click(function() { 
+			var t = $('#table2');
+			$('tbody tr:last-child', t).remove();
+			//Just call Redraw to recalculate columns.
+			t.tableHelp('Redraw');
+		});
+	</script>
 	<script type="text/javascript" charset="utf-8">
-		$(function(){  
-		 	$("#table2") 
+		$(function(){   
+		 	$("#table2")  
 				.dataTable({
 					"bJQueryUI": true,
 					"bStateSave": true, 
-					"aLengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]]
+					"aLengthMenu":[[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+					"fnDrawCallback": function( oSettings ) {
+						$("#table2").tableHelp('Redraw');
+					}
 				}) 
-				.tableHelp({
-					countRow: '#.', 
-					showClipboard: true,
-					sumColumn: [4,5,6] 
-				})
+				.tableHelp({ countRow: '#.', sumColumn: [4,5,6] })
 		});
  
 	</script>
