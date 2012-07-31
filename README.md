@@ -1,6 +1,4 @@
 #jquery.tableHelp
-####July 2012
-####Version: 0.1.0.0
 ####File: jquery.tableHelp.js
 ####Description: 
 	- jQuery plugin for Html table help.
