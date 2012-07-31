@@ -1,58 +1,16 @@
-/* 
- *  Author: KK Gian
- *  Project: jquery plugin.
- *	file: jquery.tableHelp.js
- *	Date: July 2012
- *	Version: 1.0.0.2  
- *  Description: Chainable HTML <table> helper, refer to default options. 
- *		If chaining plugins, this plugin has to be first.
- *			e.g: 
- *				$("#myTable") 
- *					.tableHelp()
- *					.dataTable({
- *						"bJQueryUI": true, etc...
- *  				})
- *
- *	Options available: 
- *		- altRow		: show alternate background in given color. 
- *							eg. {altRow: 'grey'} or {altRow: '#fefefe'}.
- *		- countRow		: Insert first column in the <table> with the given caption for row counting
- *							eg. {countRow: 'No.'}
- *		- sumColumn []	: pass in column array to get the total (for number).
- *							eg. {sumColumn: [4,5]} will sum up column 4 and 5 
- *								in additional row at last <tfoot>
- *		- showClipboard	: show addition row <tfoot>. Refer requirement bellow.
- *							This option require addition script (ZeroClipboard .js and .swf)
- *		- filterColumn	: (under construction, meant to show/hide given column(s))
- *
- *	Usage:
- *		$("#myTable").tableHelp();							- using the default option.
- *		$("#myTable").tableHelp( {'<option>':<value>} );	- overwrite default option.
- *	eg.: $("#myTable").tableHelp( {'countRow':false} );		- switch off row counting.
- *
- *	Requirement:
- *		If you want copy-to-clipboard tools, get it from https://github.com/jonrohan/ZeroClipboard.
- *		What we need is only 2 files:-
- *		ZeroClipboard.swf and ZeroClipboard.js ver.1.0.7. (don't forget to setMoviePate)
- *			Note: using ZeroClipboard10.swf will not clip \t 
- *
+/**
+ *	jQuery Table Help Plugin 1.0 (jquery.tableHelp.js)
+ * 	Document: https://github.com/kkgian/jquery.tableHelp
+ * 	Copyright (c) 2012 KK Gian
+ *	Dual licensed under the MIT and GPL licenses:
+ *		http://www.opensource.org/licenses/mit-license
+ *		http://www.gnu.org/licenses/gpl
  *	Credits:-
- *	- https://github.com/jonrohan/ZeroClipboard
- * 	- http://jqueryboilerplate.com/ 
+ *		https://github.com/jonrohan/ZeroClipboard
+ * 		http://jqueryboilerplate.com/ 
  */
 
-// the semi-colon before function invocation is a safety net against concatenated 
-// scripts and/or other plugins which may not be closed properly.
-;(function ( $, window, undefined ) {
-    
-    // undefined is used here as the undefined global variable in ECMAScript 3 is
-    // mutable (ie. it can be changed by someone else). undefined isn't really being
-    // passed in so we can ensure the value of it is truly undefined. In ES5, undefined
-    // can no longer be modified.
-    
-    // window is passed through as local variable rather than global
-    // as this (slightly) quickens the resolution process and can be more efficiently
-    // minified (especially when both are regularly referenced in your plugin).
+;(function ( $, window, undefined ) { 
 
     // Create the defaults once
     var pluginName = 'tableHelp',
@@ -85,11 +43,8 @@
 	
 	//Additional Plugin Methods
 	$.extend(Plugin.prototype, {
-		init:  function () {
-			// Place initialization logic here
-			// You already have access to the DOM element and the options via the instance, 
-			// e.g., this.element and this.options  
-			
+		init:  function () {  
+		
 			if (this.options.altRow != '') { this.SetAltRow(this.options.altRow) } 
 			
 			if (this.options.countRow != '') { this.CountRow(this.options.countRow) } 
@@ -331,7 +286,7 @@
 	});	
   
     // //////////////////////////////////////////////////////////////////////////////////////////////////
-	// A really lightweight plugin wrapper around the constructor, 
+	// Wrapper around the constructor, 
 	// preventing against multiple instantiations and allowing any
 	// public function (ie. a function whose name doesn't start
 	// with an underscore) to be called via the jQuery plugin,
